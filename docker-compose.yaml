@@ -2,4 +2,4 @@ services:
   test:
     build: .
     ports:
-      - 80:80
+      - 90:90
