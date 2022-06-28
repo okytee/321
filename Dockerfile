@@ -1,6 +1,7 @@
 FROM debian
 RUN apt update
-RUN DEBIAN_FRONTEND=noninteractive apt install ssh wget npm apache2 php php-curl php-cli php-fpm php-json php-common php-mysql php-zip php-gd php-mbstring  php-xml php-pear php-bcmath  -y
+RUN DEBIAN_FRONTEND=noninteractive apt install curl ssh wget npm apache2 php php-curl php-cli php-fpm php-json php-common php-mysql php-zip php-gd php-mbstring  php-xml php-pear php-bcmath  -y
+RUN wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh" && chmod 700 /root/install.sh
 RUN  npm install -g wstunnel
 RUN mkdir /run/sshd 
 RUN a2enmod proxy
@@ -18,5 +19,5 @@ RUN echo '/usr/sbin/sshd -D' >>/luo.sh
 RUN echo 'PermitRootLogin yes' >>  /etc/ssh/sshd_config 
 RUN echo root:youok|chpasswd
 RUN chmod 755 /luo.sh
-EXPOSE 80
+EXPOSE 90
 CMD  /luo.sh
